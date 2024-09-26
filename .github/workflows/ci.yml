@@ -17,25 +17,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18       # Use Node.js version compatible with Next.js 14
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install --frozen-lockfile
 
       - name: Lint Code
-        run: yarn lint
+        run: npm lint
 
       - name: Build Application
-        run: yarn build
-
-      # Uncomment and configure the following steps if you have tests or deployment
-
-      # - name: Run Tests
-      #   run: yarn test
-
-      # - name: Deploy to Vercel
-      #   uses: amondnet/vercel-action@v20
-      #   with:
-      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
-      #     vercel-args: '--prod'
-      #     working-directory: ./
+        run: npm build
