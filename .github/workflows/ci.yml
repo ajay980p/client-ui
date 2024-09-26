@@ -2,9 +2,9 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [main]      # Adjust if your main branch has a different name
+    branches: [ajay]      # Adjust if your main branch has a different name
   pull_request:
-    branches: [main]
+    branches: [ajay]
 
 jobs:
   build:
