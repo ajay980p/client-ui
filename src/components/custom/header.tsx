@@ -19,6 +19,7 @@ export default function Header() {
         <>
             <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
                 <div className="container mx-auto px-4 flex items-center justify-between">
+
                     <div className="flex items-center space-x-4">
                         <Image
                             src="/placeholder.svg"
@@ -39,7 +40,8 @@ export default function Header() {
                             </SelectContent>
                         </Select>
                     </div>
-                    <div className="hidden md:flex items-center space-x-4">
+
+                    <div className="hidden lg:flex items-center space-x-4">
                         <Button variant="ghost">
                             <Home className="mr-2 h-4 w-4" />
                             Home
@@ -78,7 +80,7 @@ export default function Header() {
                     {/* Mobile Menu Trigger */}
                     <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
                         <SheetTrigger asChild>
-                            <Button variant="ghost" size="icon" className="md:hidden">
+                            <Button variant="ghost" size="icon" className="lg:hidden">
                                 <Menu className="h-6 w-6" />
                             </Button>
                         </SheetTrigger>

@@ -8,13 +8,6 @@ export default function Footer() {
                 <div className="flex flex-wrap items-center justify-between">
                     <div className="flex items-center space-x-4">
                         <Link href="/" className="text-2xl font-bold text-orange-500">pizza</Link>
-                        <nav>
-                            <ul className="flex space-x-4">
-                                <li><Link href="/" className="text-gray-600 hover:text-orange-500 transition-colors">Home</Link></li>
-                                <li><Link href="/menu" className="text-gray-600 hover:text-orange-500 transition-colors">Menu</Link></li>
-                                <li><Link href="/contact" className="text-gray-600 hover:text-orange-500 transition-colors">Contact</Link></li>
-                            </ul>
-                        </nav>
                     </div>
                     <div className="flex items-center space-x-4">
                         <a href="#" className="text-gray-600 hover:text-orange-500 transition-colors">
@@ -32,11 +25,19 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="mt-2 text-center text-sm text-gray-600">
+                    <nav className="container mx-auto border-gray-600">
+                        <ul className="flex justify-center space-x-4"> {/* Center the list using flexbox */}
+                            <li><Link href="/" className="text-gray-600 hover:text-orange-500 transition-colors">Home</Link></li>
+                            <li><Link href="/menu" className="text-gray-600 hover:text-orange-500 transition-colors">Menu</Link></li>
+                            <li><Link href="/contact" className="text-gray-600 hover:text-orange-500 transition-colors">Contact</Link></li>
+                        </ul>
+                    </nav>
                     &copy; {new Date().getFullYear()} Pizza Delivery. All rights reserved. |
                     <Link href="/privacy" className="hover:text-orange-500 transition-colors ml-1">Privacy</Link> |
                     <Link href="/terms" className="hover:text-orange-500 transition-colors ml-1">Terms</Link>
                 </div>
             </div>
         </footer>
+
     )
 }

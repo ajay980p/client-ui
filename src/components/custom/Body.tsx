@@ -16,7 +16,7 @@ const pizzas = [
 ]
 const Body = () => {
     return (
-        <main className="container py-8 p-10 mt-20 mx-auto">
+        <main className="container py-8 p-10 xs:mt-16 mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between mb-12">
                 <div className="md:w-1/2 mb-8 md:mb-0">
                     <h1 className="text-4xl md:text-6xl font-bold mb-4">
