@@ -1,14 +1,15 @@
 'use client';
 
+import React from "react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import React from "react";
 
 export function UserAuth({ isModalOpen, setUserAuthOpen }: { isModalOpen: boolean, setUserAuthOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+
     return (
         <Dialog open={isModalOpen} onOpenChange={setUserAuthOpen}>
             <DialogContent className="sm:max-w-[425px]">

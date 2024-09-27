@@ -1,8 +1,11 @@
-import React from 'react'
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import HomePageImg from "@/public/assets/pizza_homepage_img.png";
-import { Button } from '../ui/button';
+'use client'
+
 import Image from 'next/image';
+import { Button } from '../ui/button';
+import React, { useState } from 'react'
+import ChoosePizzaTopping from './choosePizzaTopping';
+import HomePageImg from "@/public/assets/pizza_homepage_img.png";
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
 const pizzas = [
     { id: 1, name: "Margherita Pizza", price: 500, description: "This is very tasty pizza", image: "/placeholder.svg?height=200&width=200" },
@@ -15,6 +18,8 @@ const pizzas = [
     { id: 8, name: "Four Cheese Pizza", price: 590, description: "This is very tasty pizza", image: "/placeholder.svg?height=200&width=200" },
 ]
 const Body = () => {
+    const [isOpenToppingsCard, setIsOpenToppingsCard] = useState(false);
+
     return (
         <main className="container py-8 p-10 xs:mt-16 mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between mb-12">
@@ -54,12 +59,15 @@ const Body = () => {
                                 <p className="font-semibold text-gray-700">From ₹{pizza.price}</p>
                             </CardContent>
                             <CardFooter className="flex justify-center">
-                                <Button variant="outline" className="w-full max-w-[200px] bg-orange-100 text-orange-500 hover:bg-orange-200 border-orange-200">Choose</Button>
+                                <Button variant="outline" className="w-full max-w-[200px] bg-orange-100 text-orange-500 hover:bg-orange-200 border-orange-200" onClick={() => setIsOpenToppingsCard(true)}>Choose</Button>
                             </CardFooter>
                         </Card>
                     ))}
                 </div>
             </div>
+            {
+                isOpenToppingsCard && <ChoosePizzaTopping isModalOpen={isOpenToppingsCard} setIsModalOpen={setIsOpenToppingsCard} />
+            }
         </main>
     )
 }
