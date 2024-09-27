@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { ChevronDown, ShoppingCart, Phone, Home, Menu, X } from 'lucide-react'
+import { ChevronDown, ShoppingCart, Phone, Home, Menu } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet"
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { UserAuth } from './userAuth'
 
 const categories = ["All", "Vegetarian", "Meat Lovers", "Spicy", "Specialty"]
@@ -85,15 +85,6 @@ export default function Header() {
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                            <SheetHeader>
-                                <SheetTitle className="text-left">Menu</SheetTitle>
-                                <SheetClose asChild>
-                                    <Button variant="ghost" size="icon" className="absolute right-4 top-4">
-                                        <X className="h-4 w-4" />
-                                        <span className="sr-only">Close menu</span>
-                                    </Button>
-                                </SheetClose>
-                            </SheetHeader>
                             <nav className="flex flex-col space-y-4 mt-4">
                                 <Button variant="ghost" className="justify-start" onClick={() => setIsMenuOpen(false)}>
                                     <Home className="mr-2 h-4 w-4" />

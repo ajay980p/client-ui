@@ -16,16 +16,16 @@ export default function ChoosePizzaTopping({ isModalOpen, setIsModalOpen }: { is
 
     return (
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-            <DialogContent className="sm:max-w-[425px] sm:max-h-[600px]">
+            <DialogContent className="sm:max-w-[370px] sm:max-h-[600px]">
 
-                <DialogHeader>
-                    <DialogTitle className="text-center text-2xl font-bold text-orange-500">Welcome</DialogTitle>
+                <DialogHeader className='p-0'>
+                    <DialogTitle className="text-center text-2xl font-bold text-orange-500">Pizza 1</DialogTitle>
                     <p className="text-sm text-muted-foreground text-center">This is a very healthy pizza</p>
                 </DialogHeader>
 
-                <CardContent >
+                <CardContent className='p-0 m-0'>
                     <div className="flex justify-center">
-                        <Image src={HomePageImg} alt="Pizza" width={150} height={150} />
+                        <Image src={HomePageImg} className="p-0 m-0 box-border" alt="Pizza" width={120} height={120} />
                     </div>
 
                     <div>
