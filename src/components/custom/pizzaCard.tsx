@@ -8,6 +8,7 @@ import Chicken from "@/public/assets/chicken-leg.png";
 import Mushroom from "@/public/assets/mushrooms.png";
 import Cheese from "@/public/assets/cheese.png";
 import { Button } from '../ui/button'
+import { ShoppingCart } from 'lucide-react'
 
 interface Topping {
     name: string;
@@ -72,9 +73,13 @@ export default function ExtraToppings() {
                 ))}
             </div>
 
-            <CardFooter className="flex justify-between mt-4 p-0">
+            <CardFooter className="flex justify-between mt-5 p-0">
                 <span className="text-2xl font-bold">₹{calculateTotal()}</span>
-                <Button>Add to cart</Button>
+                <Button className='flex items-center space-x-1.5'>
+                    <ShoppingCart className='h-5 w-5' />
+                    <span>Add to cart</span>
+                </Button>
+
             </CardFooter>
         </div>
     )

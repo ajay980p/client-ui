@@ -2,13 +2,13 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import { Label } from "@/components/ui/label"
 import { CardContent } from "@/components/ui/card"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { RadioGroup } from "@/components/ui/radio-group"
 import HomePageImg from "@/public/assets/pizza_homepage_img.png";
-import PizzaCard from "./pizzaCard";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import PizzaCard from './pizzaCard';
 
 export default function ChoosePizzaTopping({ isModalOpen, setIsModalOpen }: { isModalOpen: boolean, setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
     const [size, setSize] = useState<string>('medium')
@@ -16,57 +16,67 @@ export default function ChoosePizzaTopping({ isModalOpen, setIsModalOpen }: { is
 
     return (
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-            <DialogContent className="sm:max-w-[370px] sm:max-h-[600px]">
+            <DialogContent className="sm:max-w-[600px]">
+                <div className="flex flex-col md:flex-row">
 
-                <DialogHeader className='p-0'>
-                    <DialogTitle className="text-center text-2xl font-bold text-orange-500">Pizza 1</DialogTitle>
-                    <p className="text-sm text-muted-foreground text-center">This is a very healthy pizza</p>
-                </DialogHeader>
-
-                <CardContent className='p-0 m-0'>
-                    <div className="flex justify-center">
-                        <Image src={HomePageImg} className="p-0 m-0 box-border" alt="Pizza" width={120} height={120} />
+                    {/* Left section with Pizza image */}
+                    <div className="flex justify-center items-center md:w-1/2">
+                        <Image
+                            src={HomePageImg}
+                            alt="Pizza"
+                            width={200}
+                            height={200}
+                            className="p-0 m-0 object-contain max-w-[100%] max-h-[100%] rounded-lg"
+                        />
                     </div>
 
-                    <div>
-                        <h3 className="mb-2 font-semibold">Choose the size</h3>
-                        <RadioGroup defaultValue={size} onValueChange={setSize} className="flex space-x-2">
-                            <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="small" id="small" />
-                                <Label htmlFor="small">Small</Label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="medium" id="medium" />
-                                <Label htmlFor="medium">Medium</Label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="large" id="large" />
-                                <Label htmlFor="large">Large</Label>
-                            </div>
-                        </RadioGroup>
-                    </div>
+                    {/* Right section with selection options */}
+                    <div className="md:w-1/2 p-1">
+                        <DialogHeader className='p-0'>
+                            <DialogTitle className="text-left text-2xl font-bold text-orange-500">Margarita Pizza</DialogTitle>
+                            <p className="text-sm text-muted-foreground">This is a very tasty pizza</p>
+                        </DialogHeader>
 
-                    <div className='py-4'>
-                        <h3 className="mb-2 font-semibold">Choose the crust</h3>
-                        <RadioGroup defaultValue={crust} onValueChange={setCrust} className="flex space-x-2">
-                            <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="thin" id="thin" />
-                                <Label htmlFor="thin">Thin</Label>
+                        <CardContent className='p-0 m-0'>
+                            {/* Choose Size */}
+                            <div className="my-4">
+                                <h3 className="mb-2 font-semibold">Choose the size</h3>
+                                <RadioGroup defaultValue={size} onValueChange={setSize} className="flex space-x-4">
+                                    <Button className={size === 'small' ? '' : 'bg-white'} variant={size === 'small' ? 'default' : 'outline'} onClick={() => setSize('small')}>
+                                        Small
+                                    </Button>
+                                    <Button className={size === 'medium' ? '' : 'bg-white'} variant={size === 'medium' ? 'default' : 'outline'} onClick={() => setSize('medium')}>
+                                        Medium
+                                    </Button>
+                                    <Button className={size === 'large' ? '' : 'bg-white'} variant={size === 'large' ? 'default' : 'outline'} onClick={() => setSize('large')}>
+                                        Large
+                                    </Button>
+                                </RadioGroup>
                             </div>
-                            <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="thick" id="thick" />
-                                <Label htmlFor="thick">Thick</Label>
+
+                            {/* Choose Crust */}
+                            <div className='my-4'>
+                                <h3 className="mb-2 font-semibold">Choose the crust</h3>
+                                <RadioGroup defaultValue={crust} onValueChange={setCrust} className="flex space-x-4">
+                                    <Button className={crust === 'thin' ? '' : 'bg-white'} variant={crust === 'thin' ? 'default' : 'outline'} onClick={() => setCrust('thin')}>
+                                        Thin
+                                    </Button>
+                                    <Button className={crust === 'thick' ? '' : 'bg-white'} variant={crust === 'thick' ? 'default' : 'outline'} onClick={() => setCrust('thick')}>
+                                        Thick
+                                    </Button>
+                                </RadioGroup>
                             </div>
-                        </RadioGroup>
-                    </div>
 
-                    <div>
-                        <PizzaCard />
-                    </div>
-                </CardContent>
+                            <Separator className="my-4" />
 
+                            <div>
+                                <PizzaCard />
+                            </div>
+
+                        </CardContent>
+                    </div>
+                </div>
             </DialogContent>
-
         </Dialog>
     )
 }
