@@ -89,7 +89,7 @@ const Body = ({ products, productCategories }: { products: any, productCategorie
             </div>
 
             {
-                isOpenToppingsCard && <ChoosePizzaTopping isModalOpen={isOpenToppingsCard} setIsModalOpen={setIsOpenToppingsCard} />
+                isOpenToppingsCard && <ChoosePizzaTopping products={products} isModalOpen={isOpenToppingsCard} setIsModalOpen={setIsOpenToppingsCard} />
             }
         </main>
     )
