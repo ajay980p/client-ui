@@ -8,15 +8,37 @@ import HomePageImg from "@/public/assets/pizza_homepage_img.png";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import PizzaCard from './pizzaCard';
+// import PizzaCard from './pizzaCard';
+// import ExtraToppings from './ExtraToppings';
 
-export default function ChoosePizzaTopping({ products, isModalOpen, setIsModalOpen }: { products: any, isModalOpen: boolean, setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
-    // State for selections, you can add similar state for other configurations like crust, toppings, etc.
+export default function ChoosePizzaTopping({ product, isModalOpen, setIsModalOpen }: { product: any, isModalOpen: boolean, setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+    // State for selections for size, crust, and toppings
     const [size, setSize] = useState<string>('');
     const [crust, setCrust] = useState<string>('');
+    const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
 
-    const product = products[0];
     const priceConfiguration = product?.priceConfiguration || {};
+
+    // Function to calculate the total price
+    const calculateTotal = () => {
+        let basePrice = 0;
+
+        // Get the base price based on the selected size
+        if (size && priceConfiguration.size) {
+            basePrice = priceConfiguration.size.availableOptions[size];
+        }
+
+        // Add the price of the crust if selected
+        let crustPrice = 0;
+        if (crust && priceConfiguration.crust) {
+            crustPrice = priceConfiguration.crust.availableOptions[crust];
+        }
+
+        // Calculate the price of the selected toppings
+        const toppingPrice = selectedToppings.length * 50;
+
+        return basePrice + crustPrice + toppingPrice;
+    };
 
     return (
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -51,7 +73,7 @@ export default function ChoosePizzaTopping({ products, isModalOpen, setIsModalOp
                                                     setCrust(selectedValue);
                                                 }
                                             }}
-                                            className="flex space-x-4"
+                                            className="flex flex-wrap -ml-2"
                                         >
                                             {Object.entries(availableOptions).map(([optionKey, optionValue]) => (
                                                 <Button
@@ -76,13 +98,17 @@ export default function ChoosePizzaTopping({ products, isModalOpen, setIsModalOp
 
                             <Separator className="my-4" />
 
-                            <div>
-                                <PizzaCard />
+                            {/* Display the total price */}
+                            <div className="flex justify-between items-center">
+                                <span className="text-2xl font-bold">Total: ₹{calculateTotal()}</span>
+                                <Button className='flex items-center space-x-1.5'>
+                                    <span>Add to cart</span>
+                                </Button>
                             </div>
                         </CardContent>
                     </div>
                 </div>
             </DialogContent>
-        </Dialog >
+        </Dialog>
     )
 }

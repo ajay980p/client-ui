@@ -12,6 +12,7 @@ const Body = ({ products, productCategories }: { products: any, productCategorie
     const [isOpenToppingsCard, setIsOpenToppingsCard] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [filteredProducts, setFilteredProducts] = useState(products);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     useEffect(() => {
         if (selectedCategory) {
@@ -81,7 +82,10 @@ const Body = ({ products, productCategories }: { products: any, productCategorie
                                 <p className="font-semibold text-gray-700">From ₹{item.priceConfiguration.size.availableOptions.Small}</p>
                             </CardContent>
                             <CardFooter className="flex justify-center">
-                                <Button variant="outline" className="w-full max-w-[200px] bg-orange-100 text-orange-500 hover:bg-orange-200 border-orange-200" onClick={() => setIsOpenToppingsCard(true)}>Choose</Button>
+                                <Button variant="outline" className="w-full max-w-[200px] bg-orange-100 text-orange-500 hover:bg-orange-200 border-orange-200" onClick={() => {
+                                    setIsOpenToppingsCard(true)
+                                    setSelectedProduct(item)
+                                }}>Choose</Button>
                             </CardFooter>
                         </Card>
                     ))}
@@ -89,7 +93,7 @@ const Body = ({ products, productCategories }: { products: any, productCategorie
             </div>
 
             {
-                isOpenToppingsCard && <ChoosePizzaTopping products={products} isModalOpen={isOpenToppingsCard} setIsModalOpen={setIsOpenToppingsCard} />
+                isOpenToppingsCard && <ChoosePizzaTopping product={selectedProduct} isModalOpen={isOpenToppingsCard} setIsModalOpen={setIsOpenToppingsCard} />
             }
         </main>
     )

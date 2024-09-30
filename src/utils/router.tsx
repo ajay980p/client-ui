@@ -2,7 +2,7 @@
 import { apiRoutes } from "./apiRoute";
 
 export const fetchFromAPI = async (endpoint: string) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_CATALOG_SERVICE}${endpoint}`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVICE}${endpoint}`;
     try {
         const response = await fetch(url, {
             method: 'POST',
