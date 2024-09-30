@@ -1,15 +1,32 @@
-import Body from "@/components/custom/Body";
-import Footer from "@/components/custom/Footer";
-import Header from "@/components/custom/header";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Body from "./components/Body";
+import { getAllProductsList, getAllCategoriesList } from "@/utils/router";
 
-export default function Home() {
+export default async function Home() {
+    let products = [];
+    let productCategories = [];
+
+    try {
+        const [productsResponse, categoriesResponse] = await Promise.all([
+            getAllProductsList(),
+            getAllCategoriesList()
+        ]);
+
+        products = productsResponse.data || [];
+        productCategories = categoriesResponse.data || [];
+    } catch (error) {
+        console.error("Error fetching data for Home component:", error);
+    }
+
     return (
         <>
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-white" >
                 <Header />
-                <Body />
+                <Body products={products} productCategories={productCategories} />
                 <Footer />
             </div>
+
         </>
     );
 }

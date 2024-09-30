@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
-import { UserAuth } from './userAuth'
+import { UserAuth } from '../../../components/custom/userAuth'
 
 const categories = ["All", "Vegetarian", "Meat Lovers", "Spicy", "Specialty"]
 
