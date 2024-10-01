@@ -18,4 +18,8 @@ export const apiRoutes = {
 
     // For Categories
     getCategoryList: '/catalog/category/getAllCategories',
+
+
+    // For Toppings
+    getToppingsListById: '/catalog/topping/getToppingListById',
 }

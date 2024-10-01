@@ -1,44 +1,53 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { CardContent } from "@/components/ui/card"
 import { RadioGroup } from "@/components/ui/radio-group"
 import HomePageImg from "@/public/assets/pizza_homepage_img.png";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-// import PizzaCard from './pizzaCard';
+import PizzaCard from './pizzaCard';
+import { getAllToppingsListById } from '@/utils/router'
 // import ExtraToppings from './ExtraToppings';
 
 export default function ChoosePizzaTopping({ product, isModalOpen, setIsModalOpen }: { product: any, isModalOpen: boolean, setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
     // State for selections for size, crust, and toppings
     const [size, setSize] = useState<string>('');
     const [crust, setCrust] = useState<string>('');
-    const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
+    const [toppings, setToppings] = useState<any[]>([]);
+
+    useEffect(() => {
+        getToppingDetails();
+    }, [])
+    const getToppingDetails = async () => {
+        const response = await getAllToppingsListById({ tenantId: 10 })
+        setToppings(response.data);
+    }
 
     const priceConfiguration = product?.priceConfiguration || {};
 
     // Function to calculate the total price
-    const calculateTotal = () => {
-        let basePrice = 0;
+    // const calculateTotal = () => {
+    //     let basePrice = 0;
 
-        // Get the base price based on the selected size
-        if (size && priceConfiguration.size) {
-            basePrice = priceConfiguration.size.availableOptions[size];
-        }
+    //     // Get the base price based on the selected size
+    //     if (size && priceConfiguration.size) {
+    //         basePrice = priceConfiguration.size.availableOptions[size];
+    //     }
 
-        // Add the price of the crust if selected
-        let crustPrice = 0;
-        if (crust && priceConfiguration.crust) {
-            crustPrice = priceConfiguration.crust.availableOptions[crust];
-        }
+    //     // Add the price of the crust if selected
+    //     let crustPrice = 0;
+    //     if (crust && priceConfiguration.crust) {
+    //         crustPrice = priceConfiguration.crust.availableOptions[crust];
+    //     }
 
-        // Calculate the price of the selected toppings
-        const toppingPrice = selectedToppings.length * 50;
+    //     // Calculate the price of the selected toppings
+    //     const toppingPrice = selectedToppings.length * 50;
 
-        return basePrice + crustPrice + toppingPrice;
-    };
+    //     return basePrice + crustPrice + toppingPrice;
+    // };
 
     return (
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -98,13 +107,17 @@ export default function ChoosePizzaTopping({ product, isModalOpen, setIsModalOpe
 
                             <Separator className="my-4" />
 
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <PizzaCard toppings={toppings} />
+                            </Suspense>
+
                             {/* Display the total price */}
-                            <div className="flex justify-between items-center">
+                            {/* <div className="flex justify-between items-center">
                                 <span className="text-2xl font-bold">Total: ₹{calculateTotal()}</span>
                                 <Button className='flex items-center space-x-1.5'>
                                     <span>Add to cart</span>
                                 </Button>
-                            </div>
+                            </div> */}
                         </CardContent>
                     </div>
                 </div>

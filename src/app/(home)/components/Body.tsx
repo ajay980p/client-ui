@@ -7,7 +7,6 @@ import ChoosePizzaTopping from '../../../components/custom/choosePizzaTopping';
 import HomePageImg from "@/public/assets/pizza_homepage_img.png";
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
-
 const Body = ({ products, productCategories }: { products: any, productCategories: any }) => {
     const [isOpenToppingsCard, setIsOpenToppingsCard] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);

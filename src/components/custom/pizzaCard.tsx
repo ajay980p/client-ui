@@ -1,29 +1,19 @@
 'use client'
 
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import { useState } from 'react'
 import { CheckIcon } from "lucide-react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import Chicken from "@/public/assets/chicken-leg.png";
-import Mushroom from "@/public/assets/mushrooms.png";
-import Cheese from "@/public/assets/cheese.png";
+// import Chicken from "@/public/assets/chicken-leg.png";
+// import Mushroom from "@/public/assets/mushrooms.png";
+// import Cheese from "@/public/assets/cheese.png";
 import { Button } from '../ui/button'
 import { ShoppingCart } from 'lucide-react'
+import { Topping } from '@/utils/types'
 
-interface Topping {
-    name: string;
-    price: number;
-    image: StaticImageData | string;
-}
-export default function ExtraToppings() {
+
+export default function ExtraToppings({ toppings }: { toppings: Topping[] }) {
     const [selectedToppings, setSelectedToppings] = useState<string[]>([])
-
-
-    const toppings: Topping[] = [
-        { name: 'Chicken', price: 50, image: Chicken },
-        { name: 'Mushroom', price: 50, image: Mushroom },
-        { name: 'Cheese', price: 50, image: Cheese },
-    ]
 
     const handleToppingToggle = (toppingName: string) => {
         setSelectedToppings(prev =>
@@ -66,7 +56,7 @@ export default function ExtraToppings() {
                                 height={60}
                                 className="rounded-full mb-2"
                             />
-                            <span className="text-sm font-medium">{topping.name}</span>
+                            <span className="text-sm text-center">{topping.name}</span>
                             <span className="text-sm text-gray-600">₹{topping.price}</span>
                         </CardContent>
                     </Card>
